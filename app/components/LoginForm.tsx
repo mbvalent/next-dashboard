@@ -1,22 +1,44 @@
+'use client';
+
 import React from 'react';
-import { Lato } from 'next/font/google';
-import Image from 'next/image';
 import { Input } from './Input';
-import Link from 'next/link';
 import SocialLogin from './SocialLogin';
 import Card from './Card';
 import CustomLink from './CustomLink';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 interface Props {}
 
 const LoginForm = (props: Props) => {
+  const googleAuthHandler = async () => {
+    console.log('google');
+    signIn('google', {
+      callbackUrl: 'http://localhost:3000',
+    });
+  };
+
+  const { data: sesh } = useSession();
+
+  console.log('sesh', sesh);
+
   return (
     <div className='flex flex-col'>
       <h1 className='text-4xl font-bold'>Sign In</h1>
       <p className={`font-lato`}>Sign in to your account</p>
       <div className='flex gap-6 py-6'>
-        <SocialLogin logoUrl='/google-logo.svg' text='Sign in with Google' />
-        <SocialLogin logoUrl='/apple-logo.svg' text='Sign in with Apple' />
+        <SocialLogin
+          logoUrl='/google-logo.svg'
+          text='Sign in with Google'
+          onClick={googleAuthHandler}
+        />
+        <SocialLogin
+          logoUrl='/apple-logo.svg'
+          text='Sign in with Apple'
+          onClick={() => {
+            console.log('apple');
+            signOut();
+          }}
+        />
       </div>
       <Card className='rounded-md'>
         <form className='flex flex-col'>

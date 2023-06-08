@@ -51,6 +51,7 @@ const LoginForm = (props: Props) => {
             aria-describedby='email'
             name='email'
             className='mt-2.5'
+            title='Email'
             required
           />
 
@@ -63,6 +64,7 @@ const LoginForm = (props: Props) => {
             aria-describedby='password'
             name='password'
             className='mt-2.5'
+            title='Password'
             required
           />
 

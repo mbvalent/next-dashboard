@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from '../components/Dashboard/Sidebar';
 import Topbar from '../components/Dashboard/Topbar/Topbar';
 import Overview from '../components/Dashboard/Overview';
+import UserActivity from '../components/Dashboard/UserActivity/UserActivity';
 
 type Props = {};
 
@@ -11,12 +12,17 @@ const page = (props: Props) => {
       <div className='basis-[280px]'>
         <Sidebar />
       </div>
-      <div className='flex-1 pt-5 pr-2'>
+      <main className='flex-1 pt-5 pr-2'>
         <Topbar />
-        <div className='my-10'>
-          <Overview />
+        <div className='h-full pb-10 overflow-auto'>
+          <section className='mt-5 mb-10'>
+            <Overview />
+          </section>
+          <section className='my-10'>
+            <UserActivity />
+          </section>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

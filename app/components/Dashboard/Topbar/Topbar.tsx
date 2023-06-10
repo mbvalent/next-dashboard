@@ -1,12 +1,11 @@
 import React from 'react';
 import { Input } from '../../Input';
-import Image from 'next/image';
 import Options from './Options';
 import UserMenu from './UserMenu';
 
 const Topbar = () => {
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between pb-5'>
       <h1 className='text-2xl font-bold'>Dashboard</h1>
       <div className='flex items-center'>
         <div className='mr-[30px]'>

@@ -5,7 +5,7 @@ import Card from '../../Card';
 import axios from 'axios';
 
 import LineChart, { type LineChartData } from '../Chart/LineChart';
-import ActivityFilter from './ActivityFilter';
+import ChartFilter from '../ChartFilter';
 
 type Props = {};
 
@@ -43,29 +43,29 @@ const UserActivity = (props: Props) => {
     return () => {};
   }, []);
 
-  const htmlLegendPlugin = {
-    id: 'htmlLegend',
-    afterUpdate(chart) {
-      const items = chart.options.plugins.legend.labels.generateLabels(chart);
-      const ul = document.createElement('ul');
-      items.forEach((item) => {
-        const li = document.createElement('li');
-        const boxSpan = document.createElement('span');
-        boxSpan.style.background = item.fillStyle;
-        li.appendChild(boxSpan);
-        li.appendChild(document.createTextNode(item.text));
-        ul.appendChild(li);
-      });
-      const jsLegend = document.getElementById('js-legend');
-      jsLegend?.appendChild(ul);
-    },
-  };
+  // const htmlLegendPlugin = {
+  //   id: 'htmlLegend',
+  //   afterUpdate(chart) {
+  //     const items = chart.options.plugins.legend.labels.generateLabels(chart);
+  //     const ul = document.createElement('ul');
+  //     items.forEach((item) => {
+  //       const li = document.createElement('li');
+  //       const boxSpan = document.createElement('span');
+  //       boxSpan.style.background = item.fillStyle;
+  //       li.appendChild(boxSpan);
+  //       li.appendChild(document.createTextNode(item.text));
+  //       ul.appendChild(li);
+  //     });
+  //     const jsLegend = document.getElementById('js-legend');
+  //     jsLegend?.appendChild(ul);
+  //   },
+  // };
 
   return (
     <Card className='h-[400px] w-full px-10 bg-white rounded-sm py-7'>
       <h3 className='text-lg font-bold'>Activities</h3>
       <div className='relative h-full pb-7'>
-        <ActivityFilter />
+        <ChartFilter className='absolute' />
         <LineChart
           //TODO: plugins={}
           chartData={userData}

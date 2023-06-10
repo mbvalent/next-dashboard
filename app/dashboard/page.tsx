@@ -4,6 +4,7 @@ import Topbar from '../components/Dashboard/Topbar/Topbar';
 import Overview from '../components/Dashboard/Overview';
 import UserActivity from '../components/Dashboard/UserActivity/UserActivity';
 import TopProducts from '../components/Dashboard/TopProducts/TopProducts';
+import Schedule from '../components/Dashboard/Schedule/Schedule';
 
 type Props = {};
 
@@ -24,6 +25,7 @@ const page = (props: Props) => {
           </section>
           <div className='grid gap-4 my-10 lg:gap-10 md:grid-cols-1 lg:grid-cols-2'>
             <TopProducts />
+            <Schedule />
           </div>
         </div>
       </main>

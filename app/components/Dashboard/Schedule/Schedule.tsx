@@ -9,12 +9,6 @@ import { Skeleton } from '../../Skeleton';
 
 type Props = {};
 
-enum Priority {
-  HIGH = 'High',
-  MEDIUM = 'Medium',
-  LOW = 'Low',
-}
-
 function Schedule({}: Props) {
   const [scheduleData, setScheduleData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,19 +28,6 @@ function Schedule({}: Props) {
 
     return () => {};
   }, []);
-
-  const getPriorityColor = (priority: Priority) => {
-    switch (priority) {
-      case Priority.HIGH:
-        return '#9BDD7C';
-      case Priority.MEDIUM:
-        return '#6972C3';
-      case Priority.LOW:
-        return '#9BDD7C';
-      default:
-        return Priority.LOW;
-    }
-  };
 
   if (loading) {
     return <Skeleton className='h-[256px] w-full' />;
@@ -78,7 +59,7 @@ function Schedule({}: Props) {
               title={title}
               time={time}
               location={location}
-              color={getPriorityColor(priority)}
+              priority={priority}
             />
           ))}
         </div>

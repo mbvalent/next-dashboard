@@ -1,3 +1,5 @@
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 
 const schedules = [
@@ -28,6 +30,11 @@ const schedules = [
 ];
 
 export const GET = async (request: Request, response: Response) => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.error();
+  }
+
   const { searchParams } = new URL(request.url);
   const count = Number(searchParams.get('count'));
 

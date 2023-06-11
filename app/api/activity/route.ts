@@ -1,6 +1,13 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 export const GET = async (request: Request, response: Response) => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.error();
+  }
+
   return NextResponse.json([
     {
       id: 0,

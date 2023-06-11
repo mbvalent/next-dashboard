@@ -13,7 +13,7 @@ const LoginForm = (props: Props) => {
   const googleAuthHandler = async () => {
     console.log('google');
     signIn('google', {
-      callbackUrl: 'http://localhost:3000',
+      callbackUrl: 'http://localhost:3000/dashboard',
     });
   };
 
@@ -36,7 +36,6 @@ const LoginForm = (props: Props) => {
           text='Sign in with Apple'
           onClick={() => {
             console.log('apple');
-            signOut();
           }}
         />
       </div>

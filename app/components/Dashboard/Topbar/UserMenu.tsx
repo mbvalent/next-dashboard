@@ -30,6 +30,7 @@ const UserMenu = () => {
               className='rounded-[50%] shadow-md'
               width={30}
               height={30}
+              priority
             />
             <ChevronDown className='inline h-4 2-4 ' />
           </button>

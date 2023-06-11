@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '../../Card';
 import Callout from './Callout';
 import axios from 'axios';
+import { Skeleton } from '../../Skeleton';
 
 type Props = {};
 
@@ -16,7 +17,7 @@ enum Priority {
 
 function Schedule({}: Props) {
   const [scheduleData, setScheduleData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
       .get('/api/schedule', {
@@ -26,6 +27,9 @@ function Schedule({}: Props) {
       })
       .then((res) => {
         setScheduleData(res.data);
+      })
+      .finally(() => {
+        setLoading(false);
       });
 
     return () => {};
@@ -43,6 +47,10 @@ function Schedule({}: Props) {
         return Priority.LOW;
     }
   };
+
+  if (loading) {
+    return <Skeleton className='h-[256px] w-full' />;
+  }
 
   return (
     <Card className='h-[256px] w-full bg-white rounded-sm px-10 py-7'>

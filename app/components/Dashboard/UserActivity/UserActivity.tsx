@@ -6,39 +6,47 @@ import axios from 'axios';
 
 import LineChart, { type LineChartData } from '../Chart/LineChart';
 import ChartFilter from '../ChartFilter';
+import { Skeleton } from '../../Skeleton';
+import { cn } from '@/lib/utils';
 
 type Props = {};
 
 const UserActivity = (props: Props) => {
   const [userData, setUserData] = useState<LineChartData>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/activity').then((res) => {
-      const UserData = res.data;
-      setUserData({
-        labels: UserData.map((data) => data.week),
-        datasets: [
-          {
-            label: 'User',
-            data: UserData.map((data) => data.user),
-            borderColor: '#E9A0A0',
-            borderWidth: 3,
-            fill: false,
-            tension: 0.6,
-            pointRadius: 0,
-          },
-          {
-            label: 'Guest',
-            data: UserData.map((data) => data.guest),
-            borderColor: '#9BDD7C',
-            borderWidth: 3,
-            fill: false,
-            tension: 0.6,
-            pointRadius: 0,
-          },
-        ],
+    axios
+      .get('/api/activity')
+      .then((res) => {
+        const UserData = res.data;
+        setUserData({
+          labels: UserData.map((data) => data.week),
+          datasets: [
+            {
+              label: 'User',
+              data: UserData.map((data) => data.user),
+              borderColor: '#E9A0A0',
+              borderWidth: 3,
+              fill: false,
+              tension: 0.6,
+              pointRadius: 0,
+            },
+            {
+              label: 'Guest',
+              data: UserData.map((data) => data.guest),
+              borderColor: '#9BDD7C',
+              borderWidth: 3,
+              fill: false,
+              tension: 0.6,
+              pointRadius: 0,
+            },
+          ],
+        });
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    });
 
     return () => {};
   }, []);
@@ -61,10 +69,13 @@ const UserActivity = (props: Props) => {
   //   },
   // };
 
+  if (loading) {
+    return <Skeleton className='h-[400px] w-full' />;
+  }
   return (
     <Card className='h-[400px] w-full px-10 bg-white rounded-sm py-7'>
       <h3 className='text-lg font-bold'>Activities</h3>
-      <div className='relative h-full pb-7'>
+      <div className={cn('relative h-full pb-7', {})}>
         <ChartFilter className='absolute' />
         <LineChart
           //TODO: plugins={}

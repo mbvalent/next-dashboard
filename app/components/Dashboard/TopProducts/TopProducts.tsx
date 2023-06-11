@@ -5,30 +5,39 @@ import Card from '../../Card';
 import ChartFilter from '../ChartFilter';
 import axios from 'axios';
 import PieChart, { PieChartData } from '../Chart/PieChart';
+import { Skeleton } from '../../Skeleton';
 
 type Props = {};
 
 const TopProducts = (props: Props) => {
   const [productData, setProductData] = useState<PieChartData>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/product').then((res) => {
-      const productData = res.data;
-      setProductData({
-        labels: productData.map((data) => data.label),
-        datasets: [
-          {
-            label: 'Top Products',
-            data: productData.map((data) => data.data),
-            backgroundColor: ['#EE8484', '#F6DC7D', '#98d89e'],
-            borderWidth: 0,
-          },
-        ],
-      });
-    });
+    axios
+      .get('/api/product')
+      .then((res) => {
+        const productData = res.data;
+        setProductData({
+          labels: productData.map((data) => data.label),
+          datasets: [
+            {
+              label: 'Top Products',
+              data: productData.map((data) => data.data),
+              backgroundColor: ['#EE8484', '#F6DC7D', '#98d89e'],
+              borderWidth: 0,
+            },
+          ],
+        });
+      })
+      .finally(() => setLoading(false));
 
     return () => {};
   }, []);
+
+  if (loading) {
+    return <Skeleton className='h-[256px] w-full' />;
+  }
 
   return (
     <Card className='h-[256px] w-full bg-white rounded-sm px-10 py-7'>

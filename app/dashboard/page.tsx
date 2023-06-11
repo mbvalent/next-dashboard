@@ -1,11 +1,22 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 import Sidebar from '../components/Dashboard/Sidebar';
 import Topbar from '../components/Dashboard/Topbar/Topbar';
 import Overview from '../components/Dashboard/Overview';
 import UserActivity from '../components/Dashboard/UserActivity/UserActivity';
-import TopProducts from '../components/Dashboard/TopProducts/TopProducts';
-import Schedule from '../components/Dashboard/Schedule/Schedule';
+import { Skeleton } from '../components/Skeleton';
+
+const DynamicTopProducts = dynamic(
+  () => import('../components/Dashboard/TopProducts/TopProducts'),
+  {
+    loading: () => <Skeleton className='h-[256px] w-full' />,
+  }
+);
+
+const DynamicSchedule = dynamic(() => import('../components/Dashboard/Schedule/Schedule'), {
+  loading: () => <Skeleton className='h-[256px] w-full' />,
+});
 
 type Props = {};
 
@@ -25,8 +36,8 @@ const page = (props: Props) => {
             <UserActivity />
           </section>
           <div className='grid gap-4 my-10 lg:gap-10 md:grid-cols-1 lg:grid-cols-2'>
-            <TopProducts />
-            <Schedule />
+            <DynamicTopProducts />
+            <DynamicSchedule />
           </div>
         </div>
       </main>

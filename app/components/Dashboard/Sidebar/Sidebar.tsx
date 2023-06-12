@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from '../Card';
+import Card from '../../Card';
 import Link from 'next/link';
-import Navlink from './Navlink';
+import Navlink from '../Navlink';
 
 type Props = {};
 
@@ -39,6 +39,21 @@ const dashboardLinks: DashboardLink[] = [
     icon: '/setting_icon.svg',
     link: '/settings',
   },
+  {
+    text: 'Very Long Long Long text',
+    icon: '/setting_icon.svg',
+    link: '/settings',
+  },
+  {
+    text: 'Feature #1',
+    icon: '/setting_icon.svg',
+    link: '/settings',
+  },
+  {
+    text: 'Feature #2',
+    icon: '/setting_icon.svg',
+    link: '/settings',
+  },
 ];
 
 const footerLinks = [
@@ -54,13 +69,10 @@ const footerLinks = [
 
 const Sidebar = (props: Props) => {
   return (
-    <Card className='h-full flex flex-col justify-between rounded-md py-[60px] px-[50px] bg-black text-white'>
+    <Card className='h-full flex flex-col justify-between rounded-md py-[40px] px-[30px] lg:py-[60px] lg:px-[50px] bg-black text-white'>
       <aside className='flex flex-col overflow-hidden'>
         <h1 className='text-4xl font-bold pb-[60px]'>Board.</h1>
-        <div className='flex flex-col gap-10 flex-grow overflow-auto overscroll-contain'>
-          {dashboardLinks.map(({ text, icon, link, isActive }) => {
-            return <Navlink key={text} icon={icon} text={text} link={link} isActive={isActive} />;
-          })}
+        <div className='flex flex-col flex-grow gap-10 overflow-x-hidden overflow-y-auto overscroll-contain'>
           {dashboardLinks.map(({ text, icon, link, isActive }) => {
             return <Navlink key={text} icon={icon} text={text} link={link} isActive={isActive} />;
           })}
@@ -69,7 +81,7 @@ const Sidebar = (props: Props) => {
       <footer className='mt-8'>
         <nav className='flex flex-col gap-5'>
           {footerLinks.map(({ link, text }) => (
-            <Link key={text} href={link} className='font-normal text-sm block'>
+            <Link key={text} href={link} className='block text-sm font-normal'>
               {text}
             </Link>
           ))}

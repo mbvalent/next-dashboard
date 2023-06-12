@@ -45,7 +45,7 @@ const TopProducts = (props: Props) => {
         <h3 className='text-lg font-bold'>Top products</h3>
         <ChartFilter />
       </div>
-      <div>
+      <div className='w-[99%]'>
         <PieChart
           chartData={productData}
           options={{

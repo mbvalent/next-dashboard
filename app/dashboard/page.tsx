@@ -1,7 +1,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-import Sidebar from '../components/Dashboard/Sidebar';
+import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
 import Topbar from '../components/Dashboard/Topbar/Topbar';
 import Overview from '../components/Dashboard/Overview';
 import UserActivity from '../components/Dashboard/UserActivity/UserActivity';
@@ -22,8 +22,8 @@ type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div className='flex justify-between max-h-screen min-h-screen gap-10 p-10 overflow-hidden bg-background'>
-      <div className='basis-[280px]'>
+    <div className='flex justify-between max-h-screen min-h-screen gap-4 p-4 overflow-hidden md:gap-7 xl:gap-10 md:p-7 xl:p-10 bg-background'>
+      <div className='basis-[280px] hidden md:block'>
         <Sidebar />
       </div>
       <main className='flex-1 pt-5 pr-2'>

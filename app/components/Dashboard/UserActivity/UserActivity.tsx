@@ -75,7 +75,7 @@ const UserActivity = (props: Props) => {
   return (
     <Card className='h-[400px] w-full px-10 bg-white rounded-sm py-7'>
       <h3 className='text-lg font-bold'>Activities</h3>
-      <div className={cn('relative h-full pb-7', {})}>
+      <div className={cn('relative w-[99%] h-full pb-7', {})}>
         <ChartFilter className='absolute' />
         <LineChart
           //TODO: plugins={}

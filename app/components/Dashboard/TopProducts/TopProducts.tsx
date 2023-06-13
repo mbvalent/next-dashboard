@@ -8,6 +8,11 @@ import PieChart, { PieChartData } from '../Chart/PieChart';
 import { Skeleton } from '../../Skeleton';
 
 type Props = {};
+interface IproductItem {
+  id: number;
+  label: string;
+  data: number;
+}
 
 const TopProducts = (props: Props) => {
   const [productData, setProductData] = useState<PieChartData>();
@@ -15,7 +20,7 @@ const TopProducts = (props: Props) => {
 
   useEffect(() => {
     axios
-      .get('/api/product')
+      .get<IproductItem[]>('/api/product')
       .then((res) => {
         const productData = res.data;
         setProductData({

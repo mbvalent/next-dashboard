@@ -11,13 +11,20 @@ import { cn } from '@/lib/utils';
 
 type Props = {};
 
+interface Iuser {
+  id: number;
+  week: string;
+  user: number;
+  guest: number;
+}
+
 const UserActivity = (props: Props) => {
   const [userData, setUserData] = useState<LineChartData>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get('/api/activity')
+      .get<Iuser[]>('/api/activity')
       .then((res) => {
         const UserData = res.data;
         setUserData({

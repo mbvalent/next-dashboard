@@ -13,6 +13,7 @@ export const authOptions: AuthOptions = {
     signIn: '/',
     error: '/',
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);

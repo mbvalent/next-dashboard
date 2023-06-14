@@ -45,7 +45,7 @@ const Overview = (props: Props) => {
               <Card key={item.title} className='w-full h-[120px] relative rounded-sm bg-[#DDEFE0]'>
                 <div className='absolute bottom-0 left-0 mb-5 ml-6'>
                   <p className='pb-1 text-sm break-words font-lato'>{item.title}</p>
-                  <h1 className='text-2xl font-bold lg:max-xl:text-lg'>
+                  <h1 className='text-lg sm:text-2xl font-bold lg:max-xl:text-lg break-words'>
                     <CountUp
                       start={0}
                       end={item.stat}

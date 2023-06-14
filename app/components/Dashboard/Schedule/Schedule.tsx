@@ -34,7 +34,7 @@ function Schedule({}: Props) {
   }
 
   return (
-    <Card className='h-[256px] w-full bg-white rounded-sm px-10 py-7'>
+    <Card className='min-h-[256px] w-full bg-white rounded-sm px-10 py-7'>
       <div className='flex justify-between mb-6'>
         <h3 className='text-lg font-bold'>Today’s schedule</h3>
         <button className={'inline-flex justify-center items-center'}>

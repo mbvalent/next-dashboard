@@ -25,7 +25,7 @@ const Topbar = () => {
         Dashboard
       </h1>
       <div className='flex items-center'>
-        <div className='mr-[30px]'>
+        <div className='mr-[30px] hidden sm:block'>
           <Input
             className='bg-white h-[30px] w-[180px] pl-4 pr-8 py-1.5'
             icon={'/search_icon.svg'}

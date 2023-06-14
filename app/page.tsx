@@ -24,11 +24,11 @@ export default async function Home() {
 
   return (
     <div className='flex h-screen'>
-      <div className='w-[40%] flex justify-center items-center bg-black'>
-        <h1 className='font-bold text-white text-7xl'>Board.</h1>
+      <div className='hidden md:w-2/5 md:flex justify-center items-center bg-black'>
+        <h1 className='font-bold text-white lg:text-7xl md:text-5xl text-3xl'>Board.</h1>
       </div>
 
-      <div className='w-[60%] flex justify-center items-center'>
+      <div className='px-3 md:p-0 w-full md:w-3/5 flex justify-center items-center'>
         <LoginForm />
       </div>
     </div>
